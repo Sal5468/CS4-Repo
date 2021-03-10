@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>HTML9 index Second Form</title>
+
+  </head>
+<body>
+
+  <h1>A Basic Form</h1>
+  <hr>
+  <form action = "#">
+    <fieldset>
+      <legend>Form information</legend>
+      <div>
+        <label for="username">Name:</label>
+        <input id="username" type= "text" name= "username" value="name">
+
+        <label for="state">State:</label>
+        <select id="state" name= "state">
+          <option value= "RI">Rhode Island</option>
+          <option selected= "Selected">California</option>
+          <option value= "HI">Hawaii</option>
+        </select>
+      </div>
+      <fieldset>
+        <legend>Pizza Information</legend>
+        <div>Toppings:
+          <br>
+          <label for="cheese">Cheese</label>
+          <input type="checkbox" checked="checked" id="cheese" value= "cheese" name= "toppings">
+          <br>
+          <input type="checkbox" id="tomato" value= "tomato" name= "toppings">
+          <label for="tomato">Tomato</label>
+          <br>
+
+        <div>Meat:
+          <br>
+          <input type="radio" id="ham" value= "ham" name= "meat">
+          <label for="ham">Ham</label>
+          <br>
+          <input type="radio" id="sausage" value= "sausage" name= "meat">
+          <label for="sausage">Sausage</label>
+          <br>
+          <input type="radio" checked="checked" value= "nomeat"id="nomeat" name= "meat">
+          <label for="nomeat">NoMeat</label>
+          <br>
+        </div>
+      </div>
+      <input type="reset" name= "reset" value="Clear Form">
+      <input type="submit" name= "send" value="Send Form">
+    </fieldset>
+  </fieldset>
+  </form>
+  </body>
+</html>
