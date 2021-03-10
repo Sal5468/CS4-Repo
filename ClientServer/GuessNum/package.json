@@ -1,0 +1,14 @@
+{
+  "name": "guessnum",
+  "version": "1.0.0",
+  "description": "Guess the number program",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Aarhus",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "seedrandom": "^3.0.5"
+  }
+}
