@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>jQuery 1 </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script><!--calling Jquery -->
+  </head>
+  <body onload="writeIt()">
+    <h1>Adding jQuery</h1>
+    <script type="text/javascript">
+    $(window).on("load",function(){alert("window on load")})
+    $(document).ready(function(){alert("document ready")})
+    $(window).ready(function(){alert("window ready")})
+  //  $(window).load(function(){alert("window load")})
+    function writeIt(){alert("onload")}
+    </script>
+  </body>
+</html>
