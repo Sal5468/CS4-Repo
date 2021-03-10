@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>11th HTML & JavaScript</title>
+<!-- document.createElement() appendChild()-->
+    <script>
+      function initIt()
+      {
+        var button = document.getElementById("addButton")
+        button.onclick = handleButtonClick
+      }
+      function handleButtonClick()
+      {
+        var textRef = document.getElementById("textInput")
+        var text = textRef.value
+        var li = document.createElement("li")
+        li.innerHTML = text
+        var ul = document.getElementById("playList")
+        ul.appendChild(li)
+      }
+      window.onload = initIt
+    </script>
+  </head>
+  <body>
+    <form>
+      <input type="text" id="textInput" value="">
+      <input type="button" id="addButton" value="Press Me">
+    </form>
+    <ul id="playList">
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Guess the Number JavaScript and Html Ex</title>
+  </head>
+  <body>
+
+    <h4>Guess a number between 0 - 9</h4>
+    <input type="text" id="list-input">
+    <ul id="list"></ul>
+
+    <script>
+      var random = Math.floor(Math.random() * 10);
+    //  console.log(random)
+
+      var list_input = document.getElementById("list-input");
+
+      list_input.addEventListener("keypress",function(event) {
+        if (event.code != "Enter")
+          return;
+
+  //    console.log(list_input.value)
+
+  //    if (typeof list_input.value == "string")
+  //    {console.log("is")}
+  //    else
+  //    {console.log("Not")}
+
+      var a = parseInt(list_input.value)
+  //    console.log(a)
+
+      if(isNaN(a))
+      {
+        var list_item = document.createElement("li");
+        list_item.textContent = "Please Enter A Valid Number";
+      }
+      else if (a>9||a<0)
+      {
+        var list_item = document.createElement("li");
+        list_item.textContent = "Please Enter A Number Between 0 and 9";
+      }
+      else if (a<random)
+      {
+        var list_item = document.createElement("li");
+        list_item.textContent = "Please Enter A Larger Number";
+      }
+      else if (a>random)
+      {
+        var list_item = document.createElement("li");
+        list_item.textContent = "Please Enter A Smaller Number";
+      }
+      else if (a==random)
+      {
+        var list_item = document.createElement("li");
+        list_item.textContent = "You Got It!";
+      }
+    //  var list_item = document.createElement("li");
+    //  list_item.textContent = "stuff to out put";
+
+      var list = document.getElementById("list");
+      list.appendChild(list_item);
+      list_input.value = "";
+      });
+    </script>
+  </body>
+</html>

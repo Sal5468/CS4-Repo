@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>7th HTML & JavaScript</title>
+<!-- HTML and Java working together-->
+  </head>
+  <body>
+    <div id="myDiv">Hello</div>
+    <div class = "divClass">Second Line</div>
+    <div class = "divClass">
+      <p class="pClass">This is a paragraph</p>
+    </div>
+
+    <script type = "text/JavaScript">
+      var theDiv = document.getElementById("myDiv")
+      theDiv.style.border = "3px solid black"
+      theDiv.innerHTML = "This is now changed text"
+      console.log("the content is " + theDiv.innerHTML);
+    </script>
+  </body>
+</html>

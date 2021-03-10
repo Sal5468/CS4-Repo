@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>10th HTML & JavaScript</title>
+<!-- button.oneclick callback-->
+    <script>
+      function initIt()
+      {
+        alert("function init is called")
+
+        var button = document.getElementById("addButton")
+        button.onclick = handleButtonClick
+      }
+      function handleButtonClick()
+      {
+        alert("button has been selected")
+      }
+      window.onload = initIt
+    </script>
+  </head>
+  <body>
+    <form>
+    <input type="button" id="addButton" value="Press Me">
+    </form>
+  </body>
+</html>

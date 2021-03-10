@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Calculator JavaScript and Html Ex</title>
+  </head>
+
+  <script>
+    function initIt()
+    {
+      var button = document.getElementById("calculate")
+      button.onclick = handleButtonClick
+    }
+    function handleButtonClick()
+    {
+      var CalculatePressed = document.getElementById("calculate");
+    //  var number1 = document.getElementById("num1");
+    //  var number2 = document.getElementById("num2");
+      var operationused = document.getElementById("operation");
+
+      var num1_ = parseInt(document.getElementById("num1").value)
+      var num2_ = parseInt(document.getElementById("num2").value)
+      var operationused_ = operationused.value
+
+      if(operationused_ == "add")
+      {
+        var final = num1_ + num2_
+        var finalstring = num1_ + " + " + num2_ + " = " + final
+      }
+      else if(operationused_ == "subtract")
+      {
+        var final = num1_ - num2_
+        var finalstring = num1_ + " - " + num2_ + " = " + final
+      }
+      else if(operationused_ == "multiply")
+      {
+        var final = num1_ * num2_
+        var finalstring = num1_ + " * " + num2_ + " = " + final
+      }
+      else if(operationused_ == "division")
+      {
+        var final = num1_ / num2_
+        var finalstring = num1_ + " / " + num2_ + " = " + final
+      }
+      else if(operationused_ == "exponent")
+      {
+        var final = num1_ ** num2_
+        var finalstring = num1_ + " ^ " + num2_ + " = " + final
+      }
+      //console.log(finalstring)
+      document.getElementById("answer").innerHTML = finalstring;
+      number1.value="";
+      number2.value="";
+    }
+    window.onload = initIt
+  </script>
+
+  <body>
+
+  <!--  <h4>Guess a number between 0 - 9</h4>-->
+    <label for="num1"></label>
+    <input type="number" id="num1" name="num1" value="0">
+
+    <label for="operation"></label>
+    <select id="operation" name= "operation">
+      <option selected value= "add">ADD </option>
+      <option value= "subtract">SUBTRACT </option>
+      <option value= "multiply">MULTIPLY </option>
+      <option value= "division">DIVISION </option>
+      <option value= "exponent">EXPONENT </option>
+    </select>
+
+    <label for="num2"></label>
+    <input type="number" id="num2" name="num2" value="0">
+
+    <input type="button" id="calculate" name= "calculate" value="Calculate">
+
+    <p id="answer">Answer</p>
+
+  <!--  <script>
+
+      var CalculatePressed = document.getElementById("calculate");
+
+      var number1 = document.getElementById("num1");
+      var number2 = document.getElementById("num2");
+
+      var operationused = document.getElementById("operation");
+
+      CalculatePressed.addEventListener("click",function(event) {
+
+      var num1_ = parseInt(number1.value)
+      var num2_ = parseInt(number2.value)
+      var operationused_ = operationused.value
+
+      if(operationused_ == "add")
+      {
+        var final = num1_ + num2_
+        var finalstring = num1_ + " + " + num2_ + " = " + final
+      }
+      else if(operationused_ == "subtract")
+      {
+        var final = num1_ - num2_
+        var finalstring = num1_ + " - " + num2_ + " = " + final
+      }
+      else if(operationused_ == "multiply")
+      {
+        var final = num1_ * num2_
+        var finalstring = num1_ + " * " + num2_ + " = " + final
+      }
+      else if(operationused_ == "division")
+      {
+        var final = num1_ / num2_
+        var finalstring = num1_ + " / " + num2_ + " = " + final
+      }
+      else if(operationused_ == "exponent")
+      {
+        var final = num1_ ** num2_
+        var finalstring = num1_ + " ^ " + num2_ + " = " + final
+      }
+      //console.log(finalstring)
+      document.getElementById("answer").innerHTML = finalstring;
+      number1.value="";
+      number2.value="";
+      });
+    </script> -->
+  </body>
+</html>

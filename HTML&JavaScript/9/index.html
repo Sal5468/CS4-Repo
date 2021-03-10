@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>9th HTML & JavaScript</title>
+<!-- Window.onload-->
+  </head>
+  <body>
+    <h1>Header</h1>
+    <p id ="first">paragraph1</p>
+    <p id ="second">paragraph2</p>
+    <p id ="third">paragraph3</p>
+    <p id ="fourth">paragraph4</p>
+
+    <script type = "text/JavaScript">
+      function initIt(){
+        var parId = ["first","second","third"]
+        var things = ["hello","you","school"]
+        for (var i = 0; i < things.length; i++) {
+          var handle = document.getElementById(parId[i])
+          handle.innerHTML = things[i] + "<br>"
+        }
+      }
+      window.onload = initIt //by defult it is fired when entire page loads including conetents. It also can take over for role of document.onload
+      //also document.onload called when DOM is ready which is prior to images or external content loaded
+    </script>
+  </body>
+</html>
