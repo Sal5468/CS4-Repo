@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>jQuery Checkbox</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+  </head>
+<body>
+  <h1>A Basic Form</h1>
+  <hr>
+    <fieldset>
+      <legend>Form Information</legend>
+        <div>
+          <h1>Airports</h1>
+          <input type="radio" id="airp1" name="airport" value="KSAN">
+          <label for="airp1">KSAN</label><br>
+          <input type="radio" id="airp2" name="airport" value="KSNA">
+          <label for="airp2">KSNA</label><br>
+          <input type="radio" id="airp3" name="airport" value="KLAX">
+          <label for="airp3">KLAX</label>
+        </div>
+      <br>
+    <input id="submit" type="submit" name= "send" value="SendForm" onclick="handleButtonClick()">
+    </fieldset>
+    <script>
+      function handleButtonClick()
+      {
+        alert("You chose "+ $("input[name='airport']:checked").val())
+      }
+    </script>
+  </form>
+  </body>
+</html>

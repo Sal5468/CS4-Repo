@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>jQuery Checkbox</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+  </head>
+<body>
+  <h1>A Basic Form</h1>
+  <hr>
+    <fieldset>
+      <legend>Form Information</legend>
+        <div>
+          <label for="number">Number:</label>
+          <input type="number" id="num1"  name= "number" value="0" min="0" max="10">
+          <label for="slider">Slider:</label>
+          <input type="range" id="range" name="slider" value="0" min="0" max="10" >
+        </div>
+      <br>
+  <!--  <input id="submit" type="submit" name= "send" value="SendForm" onclick="handleButtonClick()">  -->
+    </fieldset>
+    <script>
+      $("#range").on('change', function()
+      {$("#num1").val($("#range").val())});
+      $("#num1").on('change', function()
+      {$("#range").val($("#num1").val())});
+    </script>
+  </form>
+  </body>
+</html>

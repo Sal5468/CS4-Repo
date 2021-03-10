@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>jQuery Checkbox</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+  </head>
+<body>
+  <h1>Attributes</h1>
+    <img alt="abrams" id="theImage" src="Mini M1 Abrams.jpg"/>
+    <script type="text/javascript">
+        function changeImage()
+        {
+          $("#theImage").attr("src","Grogu 01.jpg")
+          $("#theImage").attr("alt","Grogu")
+        }
+        $(document).ready(
+          function()
+          {
+            setTimeout(changeImage,2000)
+          }
+        )
+    </script>
+  </form>
+  </body>
+</html>

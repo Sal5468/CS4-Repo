@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>jQuery Checkbox</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+  </head>
+<body>
+  <h1>A Basic Form</h1>
+  <hr>
+<!--  <form action = "#">-->
+    <fieldset>
+      <legend>Form Information</legend>
+        <div>
+          <input type="color" id="color"  name= "color">
+          <label for="color">Color</label>
+        </div>
+      <br>
+    <input id="submit" type="submit" name= "send" value="SendForm" onclick="handleButtonClick()">
+    </fieldset>
+    <script>
+      function handleButtonClick()
+      {
+        alert($("#color").val())
+        alert(hexToRgb($("#color").val()))
+      }
+      function hexToRgb(hex)
+      {
+        console.log(hex)
+        //split the thing into mutiple strings
+        var r = parseInt(hex.substr(1,2),16)
+        console.log(r)
+        var g = parseInt(hex.substr(3,2),16)
+        console.log(g)
+        var b = parseInt(hex.substr(5,2),16)
+        console.log(b)
+        return(r+","+g+","+b)
+    }
+
+    </script>
+  </form>
+  </body>
+</html>

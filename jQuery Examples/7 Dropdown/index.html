@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>jQuery Checkbox</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+  </head>
+<body>
+  <h1>A Basic Form</h1>
+  <hr>
+    <fieldset>
+      <legend>Form Information</legend>
+        <div>
+          <select name="cars" id="cars">
+            <option value="volvo">Volvo</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+          </select>
+        </div>
+      <br>
+    <input id="submit" type="submit" name= "send" value="SendForm" onclick="handleButtonClick()">
+    </fieldset>
+    <script>
+      function handleButtonClick()
+      {
+        alert("You chose a " + $("#cars").val())
+        $("#cars").val("volvo")
+      }
+    </script>
+  </form>
+  </body>
+</html>

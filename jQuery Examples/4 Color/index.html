@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>jQuery Checkbox</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+  </head>
+<body>
+  <h1>A Basic Form</h1>
+  <hr>
+    <fieldset>
+      <legend>Form Information</legend>
+        <div>
+          <input type="number" id="red" value="0" min="0" max="255">
+          <input type="number" id="green" value="0" min="0" max="255">
+          <input type="number" id="blue" value="0" min="0" max="255">
+          <input type="color" id="color"  name= "color">
+          <label for="color">Color</label>
+        </div>
+      <br>
+    <input id="submit" type="submit" name= "send" value="SendForm" onclick="handleButtonClick()">
+    </fieldset>
+    <script>
+      function handleButtonClick()
+      {
+        alert("0"+$("#color").val())
+        setVal($("#color").val())
+      }
+      function setVal(hex)
+      {
+          $('#red').val(parseInt(hex.substr(1,2),16));
+          $('#green').val(parseInt(hex.substr(3,2),16));
+          $('#blue').val(parseInt(hex.substr(5,2),16));
+      }
+    </script>
+  </form>
+  </body>
+</html>

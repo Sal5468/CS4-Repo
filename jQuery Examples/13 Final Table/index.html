@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <meta charset="utf-8">
+      <title>jQuery Checkbox</title>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+      <fieldset>
+        <legend>Animal Info</legend>
+          <label for="name">Animal:</label>
+          <input type="text" id="name" name="name">
+          <label for="animalcolor">Color:</label>
+          <input type="color" id="animalcolor" name="animalcolor">
+          <label for="size">Size:</label>
+          <input type="range" id="size" name="size" value="1" min="1" max="10">
+          <label for="habitat">Habitat:</label>
+          <select name="habitat" id="habitat">
+            <option selected value="fresh water">Fresh Water</option>
+            <option value="salt water">Salt Water</option>
+            <option value="above ground">Above Ground</option>
+            <option value="under ground">Under Ground</option>
+          </select>
+          <br>
+          <br>
+        <input type="reset" name= "reset" value="ClearForm" onclick="clearForm()">
+        <input type="submit" name= "send" value="SendForm" onclick="sentForm()">
+      </fieldset>
+      <div>
+      <br>
+      <div id="error"></div>
+      <br>
+        <table border="1" id="table">
+          <tr>
+            <th>Name</th>
+            <th>Color Dec</th>
+            <th>Color Hex</th>
+            <th>Size</th>
+            <th>Habitat</th>
+          </tr>
+        </table>
+      </div>
+      <br>
+    <input type="reset" name= "reset" value="ClearTable" onclick="clearTable()">
+    <input type="submit" name= "send" value="FillForm" onclick="fillForm()">
+    <input type="number" id="formChoice"  name= "formChoice" value="1" min="1">
+    <script>
+      function clearForm()
+      {
+        $("#name").val("")
+        $("#animalcolor").val("#000000")
+        $("#size").val("1")
+        $("#habitat").val("fresh water")
+      }
+      function sentForm()
+      {
+        let error = false
+        $("#table tr").each(function()
+        {
+            if($(this).find("th:eq(0)").text() == $("#name").val())
+              error = true
+        })
+        if($("#name").val() == "")
+        {
+          $("#error").html("An Animal Must Be Entered")
+            return false
+        }
+        else if(error)
+        {
+          $("#error").html("Animal Already Entered")
+          return false
+        }
+        else
+        {$("#error").html("")}
+        $( "#table" ).append( "<tr class = 'tr1'>"+
+                                "<th>"+$( "#name" ).val()+"</th>"+
+                                "<th>"+ColorDec()+"</th>"+
+                                "<th>"+$( "#animalcolor" ).val()+"</th>"+
+                                "<th>"+$("#size").val()+"</th>"+
+                                "<th>"+$( "#habitat" ).val()+"</th>"+
+                              "</tr>" );
+      }
+      function ColorDec()
+      {
+        var hex = $( "#animalcolor" ).val()
+        var r = parseInt(hex.substr(1,2),16)
+        var g = parseInt(hex.substr(3,2),16)
+        var b = parseInt(hex.substr(5,2),16)
+        return(r+","+g+","+b)
+
+      }
+      function fillForm()
+      {
+        $("#error").html("")
+        if($("#formChoice").val() > $("#table tr").length-1)
+        {$("#error").html("Invalid Index")}
+        if($("#formChoice").val() <= $("#table tr").length-1 && $("#formChoice").val()!=0)
+        {
+          let index = 0;
+          $("#table tr").each(function()
+          {
+            if(index == $("#formChoice").val())
+            {
+              $("#name").val($.trim($(this).find("th:eq(0)").text()))
+              $("#animalcolor").val($.trim($(this).find("th:eq(2)").text()))
+              $("#size").val($.trim($(this).find("th:eq(3)").text()))
+              $("#habitat").val($.trim($(this).find("th:eq(4)").text()))
+            }
+            index++
+          })
+        }
+      }
+      function clearTable()
+      {$('.tr1').remove()}
+    </script>
+  </form>
+  </body>
+</html>

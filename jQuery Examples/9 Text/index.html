@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>jQuery Checkbox</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+  </head>
+<body>
+  <h1>A Basic Form</h1>
+  <hr>
+    <fieldset>
+      <legend>Form Information</legend>
+        <div>
+          <input type="text" id="textstuff" name="textstuff">
+          <label for="textstuff">Put Text Here</label>
+        </div>
+      <br>
+    <input id="submit" type="submit" name= "send" value="SendForm" onclick="handleButtonClick()">
+    </fieldset>
+    <script>
+      function handleButtonClick()
+      {
+        alert("text has "+$("#textstuff").val())
+        $("#textstuff").val("")
+      }
+    </script>
+  </form>
+  </body>
+</html>

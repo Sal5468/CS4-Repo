@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>jQuery Checkbox</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+  </head>
+<body>
+  <h1>A Basic Form</h1>
+  <hr>
+    <fieldset>
+      <legend>Form Information</legend>
+        <div>
+          <input type="number" id="red" value="0" min="0" max="255">
+          <input type="number" id="green" value="0" min="0" max="255">
+          <input type="number" id="blue" value="0" min="0" max="255">
+          <input type="color" id="color"  name= "color">
+          <label for="color">Color</label>
+        </div>
+      <br>
+    <input id="submit" type="submit" name= "send" value="SendForm" onclick="handleButtonClick()">
+    </fieldset>
+    <script>
+      function handleButtonClick()
+      {
+        var finalhex = "#"
+        var r = parseInt($('#red').val())
+        r = r.toString(16)
+        var g = parseInt($('#green').val())
+        g = g.toString(16)
+        var b = parseInt($('#blue').val())
+        b = b.toString(16)
+
+        if(r.length<2)
+          finalhex+="0"+r
+        else
+          finalhex+=r
+
+        if(g.toString(16).length<2)
+          finalhex+="0"+g
+        else
+          finalhex+=g
+
+        if(b.toString(16).length<2)
+          finalhex+="0"+b
+        else
+          finalhex+=b
+
+        console.log(finalhex)
+        $('#color').val(finalhex)
+      }
+    </script>
+  </form>
+  </body>
+</html>

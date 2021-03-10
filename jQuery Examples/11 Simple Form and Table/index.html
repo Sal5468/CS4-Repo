@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>jQuery Checkbox</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+  </head>
+<body>
+  <h1>A Basic Form</h1>
+  <hr>
+    <fieldset>
+      <legend>Form Information</legend>
+        <div>
+          <fieldset>
+            <legend>General</legend>
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name">
+              <label for="gradelevel">Grade:</label>
+              <input type="number" id="grade"  name= "gradelevel" value="10" min="9" max="12">
+            </fieldset>
+            <br>
+          <input type="reset" name= "reset" value="ClearForm">
+          <input type="submit" name= "send" value="SendForm" onclick="sentForm()">
+      </fieldset>
+      <div>
+        <div id="error"></div>
+        <table border="1" id="table">
+          <tr>
+            <th> Name</th>
+            <th> Grade</th>
+          </tr>
+        </table>
+      </div>
+      <br>
+      <input type="reset" name= "reset" value="ClearTable" onclick="clearTable()">
+      <input type="submit" name= "send" value="FillForm" onclick="fillForm()">
+      <input type="number" id="formChoice"  name= "formChoice" value="1" min="1">
+  <!--  <input id="submit" type="submit" name= "send" value="SendForm" onclick="handleButtonClick()">-->
+    <script>
+      function sentForm()
+      {
+        let error = false
+        $("#table tr").each(function()
+        {
+            if($(this).find("th:eq(0)").text() == $("#name").val())
+              error = true
+        })
+        if($("#name").val() == "")
+        {
+          $("#error").html("A Name Must Be Entered")
+            return false
+        }
+        else if(error)
+        {
+          $("#error").html("Name Already Entered")
+          return false
+        }
+        else
+        {$("#error").html("")}
+        $( "#table" ).append( "<tr class = 'tr1'><th>"+$( "#name" ).val()+"</th><th>"+$( "#grade" ).val()+"</th></tr>" );
+      }
+      function fillForm()
+      {
+        if($("#formChoice").val() <= $("#table tr").length-1 && $("#formChoice").val()!=0)
+        {
+          let index = 0;
+          $("#table tr").each(function()
+          {
+            if(index == $("#formChoice").val())
+            {
+              $("#name").val($.trim($(this).find("th:eq(0)").text()))
+              $("#grade").val($.trim($(this).find("th:eq(1)").text()))
+            }
+            index++
+          })
+        }
+      }
+      function clearTable()
+      {
+        $('.tr1').remove()
+      }
+    </script>
+  </form>
+  </body>
+</html>
