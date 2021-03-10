@@ -1,0 +1,14 @@
+{
+  "name": "expressex1",
+  "version": "1.0.0",
+  "description": "Express Examples",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Aarhus",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
