@@ -7,8 +7,8 @@ app.use(logger("short"))
 
 app.get("/",function(req,res)//get is based on the url if it matches it goes to that specific get request
 {
-  console.log(path.resolve(_dirname,"index.html"))
-  res.sendFile(path.resolve(_dirname,"index.html"))
+  console.log(path.resolve(__dirname,"index.html"))
+  res.sendFile(path.resolve(__dirname,"index.html"))
   //res.end("Welcome to the home page")
 })
 let infoList = [{name:"Jill"},{name:"Jim"},{name:"John"},{name:"Jojo"}]
@@ -16,7 +16,7 @@ app.get("/request",function(req,res)//get is based on the url if it matches it g
 {
   res.json(infoList[0])
 })
-app.get("/request",function(req,res)//get is based on the url if it matches it goes to that specific get request
+app.get("/another",function(req,res)//get is based on the url if it matches it goes to that specific get request
 {
   res.json(infoList[1])
 })
