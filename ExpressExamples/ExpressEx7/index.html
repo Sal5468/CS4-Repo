@@ -14,6 +14,7 @@
     <div id="request">
       <input id="requestButton" type="button" value="Request" />
       <input id="anotherButton" type="button" value="Another" />
+      <input id="getButton" type="button" value="Get" />
     </div>
     <script>
       function success(data)//called from the fuction and passes in the json object
@@ -33,10 +34,16 @@
         $.get("/another", success);//get request to server on certian url
         return false;
       }
+      function getClicked()//callback
+      {
+        $.get("/getInfo", {index:1},success);//get request to server on certian url
+        return false;
+      }
       $(document).ready(function()
       {//connects callback to the correct button
         $("#requestButton").click(requestClicked);
         $("#anotherButton").click(anotherClicked);
+        $("#getButton").click(getClicked);
       });
     </script>
   </body>

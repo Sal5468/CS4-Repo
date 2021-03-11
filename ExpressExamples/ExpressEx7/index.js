@@ -1,6 +1,6 @@
 var express = require("express");
-let logger = require("morgan")
-var path = require("path");
+//let logger = require("morgan")
+//var path = require("path");
 var app = express();
 
 app.use(logger("short"))
@@ -12,6 +12,10 @@ app.get("/",function(req,res)//get is based on the url if it matches it goes to 
   //res.end("Welcome to the home page")
 })
 let infoList = [{name:"Jill"},{name:"Jim"},{name:"John"},{name:"Jojo"}]
+app.get("/getInfo",function(req,res)
+{
+  res.json(infoList[req.query.index)
+})
 app.get("/request",function(req,res)//get is based on the url if it matches it goes to that specific get request
 {
   res.json(infoList[0])//passing back to the client that particular json object
