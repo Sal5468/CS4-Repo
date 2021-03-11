@@ -14,7 +14,7 @@ app.get("/",function(req,res)//get is based on the url if it matches it goes to 
 let infoList = [{name:"Jill"},{name:"Jim"},{name:"John"},{name:"Jojo"}]
 app.get("/getInfo",function(req,res)
 {
-  res.json(infoList[req.query.index)
+  res.json(infoList[req.query.index])
 })
 app.get("/request",function(req,res)//get is based on the url if it matches it goes to that specific get request
 {
