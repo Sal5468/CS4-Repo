@@ -17,6 +17,7 @@
       <input id="getButton" type="button" value="Get" />
     </div>
     <script>
+      var i=0
       function success(data)//called from the fuction and passes in the json object
       {
         alert(data.name);//.name gets the name of it.
@@ -36,7 +37,8 @@
       }
       function getClicked()//callback
       {
-        $.get("/getInfo", {index:1},success);
+        $.get("/getInfo", {index:i},success);
+        i++
         return false;
       }
       $(document).ready(function()
