@@ -16,26 +16,26 @@
       <input id="anotherButton" type="button" value="Another" />
     </div>
     <script>
-      function success(data)
+      function success(data)//called from the fuction and passes in the json object
       {
-        alert(data.name);
+        alert(data.name);//.name gets the name of it.
       }
 
-      function requestClicked()
+      function requestClicked()//callback
       {
       //send an HTTP get request and get a result back.
-        $.get("/request", success);
+        $.get("/request", success);//get request to server on certian url. request action http verb.
         return false;
       }
-      function anotherClicked()
+      function anotherClicked()//callback
       {
-        $.get("/another", success);
+        $.get("/another", success);//get request to server on certian url
         return false;
       }
       $(document).ready(function()
-      {
-      $("#requestButton").click(requestClicked);
-      $("#anotherButton").click(anotherClicked);
+      {//connects callback to the correct button
+        $("#requestButton").click(requestClicked);
+        $("#anotherButton").click(anotherClicked);
       });
     </script>
   </body>
