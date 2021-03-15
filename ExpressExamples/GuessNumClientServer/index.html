@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Guess The Number</title>
+      <script type="text/javascript" src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+    <p>Enter a number from 0 to 9.</p>
+
+<!-- text edit box -->
+    <input type="text" id="list-input">
+<!-- unordered list -->
+    <ul id="list"></ul>
+
+<script>
+    let computerNum = Math.floor(Math.random() * 10);
+
+    //handle to the text edit box element.
+    var list_input = document.getElementById("list-input");
+
+    $(document).ready(function(){
+      $("#list-input").keypress(function(event){
+        if (event.charCode != "13")
+            return;
+        // will only get here when return key is pressed.
+        //handle to a newly created list item.
+
+        let userNum = parseInt(list_input.value);
+//let userNum = Number(list_input.value);
+        let outputStr;
+        if (isNaN(userNum))
+        {
+            outputStr = "Not a Number";
+        }
+        else if (userNum > computerNum)
+        {
+            outputStr = "Choose a smaller number";
+        }
+        else if (userNum < computerNum)
+        {
+            outputStr = "Choose a larger number";
+        }
+        else if (userNum == computerNum)
+        {
+            outputStr = "You Got It!";
+        }
+        $("#list").append("<li>"+outputStr+"</li>")
+        $("#list-input").val("")
+    });
+  });
+</script>
+</body>
+</html>
