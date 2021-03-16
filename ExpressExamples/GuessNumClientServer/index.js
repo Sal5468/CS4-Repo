@@ -3,7 +3,7 @@ let logger = require("morgan")
 var path = require("path");
 var app = express();
 
-app.use(logger("short"))
+//app.use(logger("short"))
 
 app.get("/",function(req,res)//get is based on the url if it matches it goes to that specific get request
 {
