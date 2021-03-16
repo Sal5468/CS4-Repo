@@ -1,9 +1,11 @@
-let express = require('express');
-let path = require("path");
+var express = require("express");
+let logger = require("morgan")
+var path = require("path");
+var app = express();
 
-const guessnum = require('./guessNum');
-
-let app = express();
+var bodyParser = require("body-parser")
+app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.json())
 
 //req is info sending to server from client.
 //res is info sending to client from server.
@@ -15,10 +17,10 @@ app.get("/",function(req,res) {
 app.post("/init",function(req,res)
 {
 //???    set the guess num min and max
-    console.log(req.query.minVal)
-    console.log(req.query.maxVal)
-    guessnum.storeNum(parseInt(req.query.minVal), parseInt(req.query.maxVal))
-    res.json(null);
+  console.log(req.body.minVal)
+  console.log(req.body.maxVal)
+  guessnum.storeNum(parseInt(req.body.minVal), parseInt(req.body.maxVal))
+  res.json(null);
 });
 
 let retData = {info:0,numTries:0}     //javascript object

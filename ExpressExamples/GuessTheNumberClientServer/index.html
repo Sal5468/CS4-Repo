@@ -34,7 +34,7 @@
         minVal : 0,
         maxVal : 9
       };
-    $.get("/init", minMax,null);
+    $.post("/init", minMax,null);
 
     $("#list-input").keypress(function(event)
     {
