@@ -20,6 +20,19 @@
     {
         let outputStr = "";
 //???   //use data.info and data.numTries
+        if(data.info == 1)
+        {
+          outputStr = "Choose a Smaller Number"
+        }
+        else if(data.info == -1)
+        {
+          outputStr = "Choose a Larger Number"
+        }
+        else
+        {
+          outputStr = "You Win! With " + data.numTries + " tries"
+        }
+
         $("#list").append('<li>'+outputStr+'</li>');
         $("#list-input").val("");
       }

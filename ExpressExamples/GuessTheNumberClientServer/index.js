@@ -14,14 +14,20 @@ app.get("/",function(req,res) {
 
 app.get("/init",function(req,res) {
 //???    set the guess num min and max
+    console.log(req.query.minVal)
+    console.log(req.query.maxVal)
+    guessnum.storeNum(req.query.minVal, req.query.maxVal)
     res.json(null);
 });
 
 let retData = {info:0,numTries:0}     //javascript object
-app.get("/guess", function(req, res){
+app.get("/guess", function(req, res)
+{
     console.log("in server number chosen is " + req.query.guessNum);
 //???  check the the player's guess and return the hint.
+      retData.info = guessnum.guessNum(req.query.guessNum)
 //???  return how many tries.
+      retData.numTries = guessnum.getNumTries()
     res.json(retData);
 });
 
