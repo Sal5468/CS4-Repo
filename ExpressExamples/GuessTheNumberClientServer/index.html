@@ -14,59 +14,47 @@
     <ul id="list"></ul>
 
 <script>
-//    let computerNum = Math.floor(Math.random() * 10);
-
     function success(data)
     {
-        let outputStr = "";
-//???   //use data.info and data.numTries
-        if(data.info == 1)
-        {
-          outputStr = "Choose a Smaller Number"
-        }
-        else if(data.info == -1)
-        {
-          outputStr = "Choose a Larger Number"
-        }
-        else
-        {
-          outputStr = "You Win! With " + data.numTries + " tries"
-        }
+      let outputStr = "";
+      if(data.info == 1)
+      {outputStr = "Choose a Smaller Number"}
+      else if(data.info == -1)
+      {outputStr = "Choose a Larger Number"}
+      else
+      {outputStr = "You Win! With " + data.numTries + " tries"}
+      $("#list").append('<li>'+outputStr+'</li>');
+      $("#list-input").val("");
+      }
 
+    $(document).ready(function()
+    {
+      let minMax =
+      {
+        minVal : 0,
+        maxVal : 9
+      };
+    $.get("/init", minMax,null);
+
+    $("#list-input").keypress(function(event)
+    {
+      if (event.keyCode != 13)
+        return;
+      let userNum = parseInt($("#list-input").val());
+      let outputStr;
+      if (isNaN(userNum))
+      {
+        outputStr = "Not a Number";
         $("#list").append('<li>'+outputStr+'</li>');
         $("#list-input").val("");
       }
-
-      $(document).ready(function()
+      else
       {
-        let minMax = {
-          minVal : 0,
-          maxVal : 9
-        };
-        $.get("/init", minMax,null);
-
-
-        $("#list-input").keypress(function(event)
-        {
-          if (event.keyCode != 13)
-                    return;
-          let userNum = parseInt($("#list-input").val());
-              let outputStr;
-              if (isNaN(userNum))
-              {
-                    outputStr = "Not a Number";
-                $("#list").append('<li>'+outputStr+'</li>');
-                $("#list-input").val("");
-              }
-              else
-              {
-                $.get("/guess", {guessNum:userNum},success);
-            return false;
-              }
-        });
+      $.get("/guess", {guessNum:userNum},success);
+      return false;
+      }
     });
-
-
+    });
 </script>
 </body>
 </html>

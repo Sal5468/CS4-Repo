@@ -12,7 +12,8 @@ app.get("/",function(req,res) {
     res.sendFile(path.resolve(__dirname,"index.html"));
 });
 
-app.get("/init",function(req,res) {
+app.post("/init",function(req,res)
+{
 //???    set the guess num min and max
     console.log(req.query.minVal)
     console.log(req.query.maxVal)
