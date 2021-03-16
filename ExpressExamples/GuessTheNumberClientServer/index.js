@@ -16,7 +16,7 @@ app.get("/init",function(req,res) {
 //???    set the guess num min and max
     console.log(req.query.minVal)
     console.log(req.query.maxVal)
-    guessnum.storeNum(req.query.minVal, req.query.maxVal)
+    guessnum.storeNum(parseInt(req.query.minVal), parseInt(req.query.maxVal))
     res.json(null);
 });
 
