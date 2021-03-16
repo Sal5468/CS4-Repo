@@ -16,7 +16,7 @@
     let computerNum = Math.floor(Math.random() * 10);
 
     //handle to the text edit box element.
-    var list_input = document.getElementById("list-input");
+    //var list_input = document.getElementById("list-input");
 
     $(document).ready(function(){
       $("#list-input").keypress(function(event){
@@ -25,7 +25,7 @@
         // will only get here when return key is pressed.
         //handle to a newly created list item.
 
-        let userNum = parseInt(list_input.value);
+        let userNum = parseInt($("#list-input").val());
 //let userNum = Number(list_input.value);
         let outputStr;
         if (isNaN(userNum))
