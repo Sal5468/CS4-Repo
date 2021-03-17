@@ -2,6 +2,7 @@ var express = require("express");
 let logger = require("morgan")
 var path = require("path");
 var app = express();
+var guessnum = require("./guessNum");
 
 var bodyParser = require("body-parser")
 app.use(bodyParser.urlencoded({extended:true}))
