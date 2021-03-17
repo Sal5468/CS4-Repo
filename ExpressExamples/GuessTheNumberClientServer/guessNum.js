@@ -1,6 +1,6 @@
 const randomModule3 = require('./randomModule3');
 
-let computerNum = 10;
+let computerNum = 0;
 let numTries;
 let obj;
 
