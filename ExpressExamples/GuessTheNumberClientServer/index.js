@@ -24,6 +24,12 @@ app.post("/init",function(req,res)
   res.json(null);
 });
 
+app.post("/changeminmax",function(req,res)
+{
+  guessnum.storeNum(parseInt(req.body.minVal), parseInt(req.body.maxVal))
+  res.json({minVal:req.body.minVal,maxVal:req.body.maxVal});
+});
+
 let retData = {info:0,numTries:0}     //javascript object
 app.get("/guess", function(req, res)
 {

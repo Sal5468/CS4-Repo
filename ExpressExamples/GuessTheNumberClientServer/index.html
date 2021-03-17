@@ -6,35 +6,56 @@
 
 </head>
 <body>
-    <p>Enter a number from 0 to 9.</p>
+  <label for="num1">MinVal:</label>
+  <input type="number" id="num1"  name= "number" value="0" min="0">
+  <label for="num2">MaxVal:</label>
+  <input type="number" id="num2"  name= "number" value="100" min="0">
+  <input id="rangeSub" type="button" value="Change MinMax">
+
+    <p id="textstuff">Enter a number from 0 to 9.</p>
 
 <!-- text edit box -->
     <input type="text" id="list-input">
+
+
+
 <!-- unordered list -->
     <ul id="list"></ul>
 
 <script>
-    function success(data)
+  function success(data)
+  {
+    let outputStr = "";
+    if(data.info == 1)
+    {outputStr = "Choose a Smaller Number"}
+    else if(data.info == -1)
+    {outputStr = "Choose a Larger Number"}
+    else
+    {outputStr = "You Win! With " + data.numTries + " tries"}
+    $("#list").append('<li>'+outputStr+'</li>');
+    $("#list-input").val("");
+  }
+  function MinMax()
+  {
+    $.post("/changeminmax",{minVal:$("#num1").val(),maxVal:$("#num2").val()},successMinMax)
+    return false
+  }
+  function successMinMax(data)
+  {
+    console.log(data)
+    $("#textstuff").text("Enter a number from " + data.minVal + " to " + data.maxVal)
+  }
+  $(document).ready(function()
+  {
+    let minMax =
     {
-      let outputStr = "";
-      if(data.info == 1)
-      {outputStr = "Choose a Smaller Number"}
-      else if(data.info == -1)
-      {outputStr = "Choose a Larger Number"}
-      else
-      {outputStr = "You Win! With " + data.numTries + " tries"}
-      $("#list").append('<li>'+outputStr+'</li>');
-      $("#list-input").val("");
-    }
-
-    $(document).ready(function()
-    {
-      let minMax =
-      {
-        minVal : 0,
-        maxVal : 9
-      };
+      minVal : $("#num1").val(),
+      maxVal : $("#num2").val()
+    };
     $.post("/init", minMax,null);
+    $("#textstuff").text("Enter a number from " + minMax.minVal + " to " + minMax.maxVal);
+
+    $("#rangeSub").click(MinMax)
 
     $("#list-input").keypress(function(event)
     {
@@ -50,8 +71,8 @@
       }
       else
       {
-      $.get("/guess", {guessNum:userNum},success);
-      return false;
+        $.get("/guess", {guessNum:userNum},success);
+        return false;
       }
     });
     });
