@@ -3,70 +3,65 @@
 <head>
     <title>Guess The Number Client Server</title>
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
 </head>
 <body>
-  <label for="num1">MinVal:</label>
-  <input type="number" id="num1"  name= "number" value="0">
-  <label for="num2">MaxVal:</label>
-  <input type="number" id="num2"  name= "number" value="9">
-  <input id="rangeSub" type="button" value="Change MinMax">
-
-  <p id="textstuff">Enter a number from 0 to 9.</p>
-  <input type="text" id="list-input">
-  <ul id="list"></ul>
+  <p id="tellPlayer">Enter a number from 1 to 10</p>
+<!-- text edit box -->
+    <input type="text" id="list-input">
+<!-- unordered list -->
+    <ul id="list"></ul>
 
 <script>
-  function success(data)
-  {
-    let outputStr = "";
-    if(data.info == 1)
-    {outputStr = "Choose a Smaller Number"}
-    else if(data.info == -1)
-    {outputStr = "Choose a Larger Number"}
-    else
-    {outputStr = "You Win! With " + data.numTries + " tries"}
-    $("#list").append('<li>'+outputStr+'</li>');
-    $("#list-input").val("");
-  }
-  function MinMax()
-  {
-    $.post("/changeminmax",{minVal:$("#num1").val(),maxVal:$("#num2").val()},successMinMax)
-    return false
-  }
-  function successMinMax(data)
-  {
-    console.log(data)
-    $("#textstuff").text("Enter a number from " + data.minVal + " to " + data.maxVal)
-  }
-  $(document).ready(function()
-  {
-    let minMax =
-    {
-      minVal : $("#num1").val(),
-      maxVal : $("#num2").val()
-    };
-    $.post("/init", minMax,null);
-    $("#textstuff").text("Enter a number from " + minMax.minVal + " to " + minMax.maxVal);
-    $("#rangeSub").click(MinMax)
-    $("#list-input").keypress(function(event)
-    {
-      if (event.keyCode != 13)
-        return;
-      let userNum = parseInt($("#list-input").val());
-      let outputStr;
-      if (isNaN(userNum))
-      {
-        outputStr = "Not a Number";
+
+    function success(data) {
+        let outputStr = "";
+          if (data.info == 1)
+        {
+          outputStr = "Choose a smaller number";
+        }
+        else if (data.info == -1)
+        {
+          outputStr = "Choose a larger number";
+        }
+        else
+        {
+          outputStr = "You got it in " + data.numTries + " tries.";
+        }
         $("#list").append('<li>'+outputStr+'</li>');
         $("#list-input").val("");
       }
-      else
+
+      $(document).ready(function()
       {
-        $.get("/guess", {guessNum:userNum},success);
-        return false;
-      }
+        $.post("/init",null,null);
+        $.get("/getminmax", null,function(data)
+        {
+          $("#tellPlayer").text("Enter a number from " + data.minVal + " to " + data.maxVal);
+    //      $('#minVal').val(data.minVal);
+  //        $('#maxVal').val(data.maxVal);
+        });
+
+        $("#list-input").keypress(function(event) {
+            if (event.keyCode != 13)
+                return;
+            let userNum = parseInt($("#list-input").val());
+            let outputStr;
+            if (isNaN(userNum))
+            {
+                outputStr = "Not a Number";
+                $("#list").append('<li>'+outputStr+'</li>');
+                $("#list-input").val("");
+            }
+            else
+            {
+                $.get("/guess", {guessNum:userNum},success);
+                  return false;
+            }
+        });
     });
-    });
+
+
 </script>
 </body>
 </html>

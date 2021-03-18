@@ -1,33 +1,29 @@
 const randomModule3 = require('./randomModule3');
 
-let computerNum = 0;
+let computerNum = 10;
 let numTries;
-let obj;
+let obj = new randomModule3();   //added
 
-exports.storeNum = function(minValue,maxValue)
-{
-    console.log("Choose a number from " + minValue + " to " + maxValue);
+exports.storeMinMax = function(minValue,maxValue) {
+    console.log("number from " + minValue + " to " + maxValue);
     obj = new randomModule3(minValue,maxValue);
+}
+
+exports.chooseComputerNum = function() {
     computerNum = obj.randomInteger();
     console.log("computerNum = " + computerNum);
     numTries = 0;
 }
 
-exports.guessNum = function(guess)
-{
+exports.guessNum = function(guess) {
     let retVal = 0;
-    if (guess < computerNum)
-    {
+    if (guess < computerNum) {
         console.log("Choose a bigger number");
         retVal = -1;
-    }
-    else if (guess > computerNum)
-    {
+    } else if (guess > computerNum){
         console.log("Choose a smaller number");
         retVal = 1;
-    }
-    else
-    {
+    } else {
         console.log("You won");
         retVal = 0;
     }
@@ -35,5 +31,13 @@ exports.guessNum = function(guess)
     return(retVal);
 }
 
-exports.getNumTries = function()
-{return (numTries)}
+exports.getNumTries = function() {
+    return (numTries);
+}
+
+exports.getMin = function() {
+    return (obj.getMin());
+}
+exports.getMax = function() {
+    return (obj.getMax());
+}
