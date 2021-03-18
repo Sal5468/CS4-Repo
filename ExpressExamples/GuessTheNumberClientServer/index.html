@@ -3,7 +3,6 @@
 <head>
     <title>Guess The Number Client Server</title>
     <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-
 </head>
 <body>
   <label for="num1">MinVal:</label>
@@ -12,15 +11,9 @@
   <input type="number" id="num2"  name= "number" value="100" min="0">
   <input id="rangeSub" type="button" value="Change MinMax">
 
-    <p id="textstuff">Enter a number from 0 to 9.</p>
-
-<!-- text edit box -->
-    <input type="text" id="list-input">
-
-
-
-<!-- unordered list -->
-    <ul id="list"></ul>
+  <p id="textstuff">Enter a number from 0 to 9.</p>
+  <input type="text" id="list-input">
+  <ul id="list"></ul>
 
 <script>
   function success(data)
@@ -54,9 +47,7 @@
     };
     $.post("/init", minMax,null);
     $("#textstuff").text("Enter a number from " + minMax.minVal + " to " + minMax.maxVal);
-
     $("#rangeSub").click(MinMax)
-
     $("#list-input").keypress(function(event)
     {
       if (event.keyCode != 13)
