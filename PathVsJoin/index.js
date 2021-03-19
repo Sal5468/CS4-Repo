@@ -16,8 +16,6 @@ console.log("path.resolve() : " ,path.resolve(__dirname,'/public',"../private"))
 console.log("path.resolve() : " ,path.resolve('static',"images"));//just keeps going one folder down
 
 
-
-
 console.log(__dirname)
 
 //path itself will mod ify so slashes are in correct direction
