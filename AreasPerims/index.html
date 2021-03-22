@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--   -->
+<html>
+  <head>
+    <title>Ajax</title>
+    <meta charset="utf-8"/>
+    <style type="text/css">
+
+    </style>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  </head>
+
+  <body>
+
+      <div id="Info">Areas</div>
+
+      <label for="len1">Len1:</label>
+      <input id="len1" type="number" name="len1" value="0" min="0" max="10" />
+      <label for="len2">Len2:</label>
+      <input id="len2" type="number" name="len2" value="0" min="0" max="10" />
+
+                        <div>
+                          Shape:
+              <input type="radio" id="square" name="shape" value="square" checked="checked" >
+              <label for="square">Square</label>
+              <input type="radio" id="rectangle" name="shape" value="rectangle">
+              <label for="rectangle">Rectangle</label>
+                        </div>
+
+        <input id="select" type="button" value="Select" />
+      <div id="Output"></div>
+
+    <script>
+
+      function success(data) {
+        if (data.type == 0)
+        {
+          $("#Output").html("area = " + data.val);
+        }
+        else
+        {
+          $("#Output").html("perim = " + data.val);
+
+        }
+
+          }
+      function typeCheck(data) {
+        console.log("typeCheck " + data.type);
+        if (data.type == 0)
+          $("#Info").html("Area");
+        else
+          $("#Info").html("Perim");
+
+      }
+          function Calculate(){
+            $.get("/calculate", {len1:$("#len1").val(), len2:$("#len2").val(),shape:$('input[name=shape]:checked').val()},success);
+            return false;
+          }
+
+          $(document).ready(function(){
+        console.log("reset");
+
+        $.get("/typeCheck",typeCheck);
+
+            $("#select").click(Calculate);
+          });
+    </script>
+  </body>
+</html>  
