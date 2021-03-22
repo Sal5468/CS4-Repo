@@ -22,7 +22,7 @@
 
     <script>
       function successImage(data) {
-        $("#image1").attr("src","images/" + data.name);
+        $("#image1").attr("src","images/" + data.name);//concatinates to the end of express.static in the server. 
 //        $("#image1").attr("src",data.name);
       }
       function successText(data) {
@@ -45,4 +45,4 @@
           });
     </script>
   </body>
-</html>  
+</html>
