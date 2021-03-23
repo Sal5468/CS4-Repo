@@ -16,8 +16,8 @@ app.get("/", function(request, response) {
 
 
 var infoList = [{"name":"deer.jpg"},{"name":"hero.jpg"},{"name":"bison.jpg"},{"name":"release.jpg"}];
-var internetList = [{"name":"https://mvhs-vistausd-ca.schoolloop.com/uimg/file/1444984673163/4419624758637892458.png"}];
-	
+var internetList = [{"name":"https://static.scientificamerican.com/sciam/cache/file/92E141F8-36E4-4331-BB2EE42AC8674DD3_source.jpg"}];
+
 app.get('/request', function(req, res){
 	if (req.query.index < 0) {
 		res.json(infoList[Math.floor(Math.random()*4)]);
