@@ -4,10 +4,10 @@ var app = express();
 
 
 
-app.use(express.static(__dirname + "/"));  // 0
+//app.use(express.static(__dirname + "/"));  // 0
 //app.use('/', express.static('./'));
 
-//app.use(express.static('./images'));    // 1
+app.use(express.static('./images'));    // 1
 //app.use('/hello',express.static('./images'));    // 2
 
 app.get("/", function(request, response) {
