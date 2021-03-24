@@ -4,11 +4,11 @@ var router = express.Router();
 var formidable = require('formidable');
 var mv = require('mv');
 
-app.get("/", function(request, response) {
-	  response.sendFile(__dirname + 'views/uploadfile.html');
+router.get("/", function(request, response) {
+	  response.sendFile(__dirname + '/public/views/uploadfile.html');
 });
-app.get("/display", function(request, response) {
-	  response.sendFile(__dirname + 'views/displayimages.html');
+router.get("/display", function(request, response) {
+	  response.sendFile(__dirname + '/public/views/displayimages.html');
 });
 
 router.post('/fileupload', function(req, res)
@@ -17,7 +17,7 @@ router.post('/fileupload', function(req, res)
     form.parse(req, function (err, fields, files)
 		{
       var oldpath = files.filetoupload.path;
-      var newpath = __dirname + '/public/' + files.filetoupload.name;
+      var newpath = __dirname + '/public/images/' + files.filetoupload.name;
       mv(oldpath, newpath, function (err)
 			{
         if (err) throw err;
