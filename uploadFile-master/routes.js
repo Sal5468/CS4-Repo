@@ -5,16 +5,16 @@ var formidable = require('formidable');
 var mv = require('mv');
 
 router.get("/",function(req,res){
-	    res.sendFile(__dirname + "/index.html");
+	    res.sendFile(__dirname + "/public/views/index.html");
 });
 
 router.post('/fileupload', function(req, res)
 {
     var form = new formidable.IncomingForm();
-    form.parse(req, function (err, fields, files) 
+    form.parse(req, function (err, fields, files)
 		{
       var oldpath = files.filetoupload.path;
-      var newpath = __dirname + '/public/' + files.filetoupload.name;
+      var newpath = __dirname + '/public/images/' + files.filetoupload.name;
       mv(oldpath, newpath, function (err)
 			{
         if (err) throw err;
