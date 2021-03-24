@@ -3,6 +3,7 @@ var express = require("express");
 var router = express.Router();
 var formidable = require('formidable');
 var mv = require('mv');
+var latestfile;
 
 router.get("/", function(request, response) {
 	  response.sendFile(__dirname + '/public/views/uploadfile.html');
@@ -21,10 +22,16 @@ router.post('/fileupload', function(req, res)
       mv(oldpath, newpath, function (err)
 			{
         if (err) throw err;
+				latestfile = newpath;
         res.write('File uploaded and moved!');
         res.end();
       });
     });
+});
+
+router.get('/request', function(req, res)
+{
+	res.json({name:latestfile})
 });
 
 module.exports = router;

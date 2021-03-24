@@ -14,18 +14,20 @@
     <div id="request">
     	<input id="image2Button" type="button" value="Image2" />
     </div>
-    <img id="image1" alt="" height="285" width="380">
+    <img id="image1" src="" alt="" height="285" width="380">
 
 
 
     <script>
   		function success(data)
       {
-        image1.src = data.name;
+        //file:///C:/Users/maria/Desktop/CS4/CS4-Repo/upload-display/public/images/bison.jpg
+        image1.src = "file:///C:/Users/maria/Desktop/CS4/CS4-Repo/upload-display/public/images/bison.jpg";
   		}
   		function getImage2()
       {
-        $.get("/request", {index:2},success);
+        console.log("In get image 2")
+        $.get("/request", null,success);
   	     return false;
   		}
   		$(document).ready(function()
