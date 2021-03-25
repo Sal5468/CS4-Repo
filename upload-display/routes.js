@@ -20,8 +20,6 @@ router.post('/fileupload', function(req, res)
       var oldpath = files.filetoupload.path;
       var newpath = __dirname + "/public/images/" + files.filetoupload.name;
 			latestfile = newpath
-		//	console.log( __dirname)
-		//	console.log( newpath)
 			//latestfile = "/public/images/" + files.filetoupload.name
       mv(oldpath, newpath, function (err)
 			{
