@@ -35,7 +35,7 @@ myDatabase.prototype.getStudent = function(id) {
 	return null;
 }
 
-myDatabase.prototype.putStudent = function(student) {
+myDatabase.prototype.putStudent = function(student) {//update request from cient to server
   for (let i=0;i<this.students.length;i++) {
     if (this.students[i] && this.students[i].id == student.id) {
 //			this.students[i] = student;

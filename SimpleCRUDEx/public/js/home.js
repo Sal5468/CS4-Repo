@@ -12,9 +12,9 @@ function readClicked(){
           alert("good read");
         } else
           alert("bad read");
-      } ,     
+      } ,
       dataType: "json"
-    });     
+    });
   return false;
 }
 function createClicked(){
@@ -29,15 +29,15 @@ function createClicked(){
           alert("good create");
         else
           alert("bad create");
-        } ,     
+        } ,
       dataType: "json"
-    });     
+    });
   return false;
 }
-function updateClicked(){
+function updateClicked(){//no $.put so this is why we do this for update
     $.ajax({
       url: "/update",
-      type: "PUT",            
+      type: "PUT",
       data: {identifier:$("#identifier").val(),name:$("#name").val()},
       success: function(data){
         if (!data)
@@ -46,30 +46,30 @@ function updateClicked(){
           alert("good update");
         else
           alert("bad update");
-      } ,     
+      } ,
       dataType: "json"
-    });     
+    });
   return false;
 }
 function deleteClicked(){
     $.ajax({
       url: "/delete/" + Number($("#identifier").val()),
       type: "DELETE",
-      success: function(data) { 
+      success: function(data) {
         if (!data)
           alert("bad delete");
         else if (data.retVal)
           alert("good delete");
         else
           alert("bad delete");
-      } ,   
+      } ,
       dataType: "json"
-    });  
-    return false;             
-}      
-$(document).ready(function(){        
+    });
+    return false;
+}
+$(document).ready(function(){
   $("#readButton").click(readClicked);
   $("#createButton").click(createClicked);
   $("#updateButton").click(updateClicked);
   $("#deleteButton").click(deleteClicked);
-}); 
+});
