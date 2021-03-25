@@ -29,7 +29,7 @@
   		function getImage2()
       {
         console.log("In get image 2")
-        $.get("/request", null,success);
+        $.get("/request", {index:-1},success);
   	     return false;
   		}
   		$(document).ready(function()
