@@ -18,11 +18,15 @@ router.post('/fileupload', function(req, res)
     form.parse(req, function (err, fields, files)
 		{
       var oldpath = files.filetoupload.path;
-      var newpath = __dirname + '/public/images/' + files.filetoupload.name;
+      var newpath = __dirname + "/public/images/" + files.filetoupload.name;
+			latestfile = newpath
+		//	console.log( __dirname)
+		//	console.log( newpath)
+			//latestfile = "/public/images/" + files.filetoupload.name
       mv(oldpath, newpath, function (err)
 			{
         if (err) throw err;
-				latestfile = newpath;
+				//latestfile = '/public/images/' + files.filetoupload.name;
         res.write('File uploaded and moved!');
         res.end();
       });
