@@ -21,7 +21,7 @@ router.post('/create', function(req, res){//is creating
 		res.json({retVal:false});
 		return;
 	}
-	let obj = new Student(req.body.identifier,req.body.name);
+	let obj = new Student(req.body.identifier,req.body.name,req.body.age,req.body.grade);
 	res.json({retVal:db.postStudent(obj)});
 });
 
@@ -36,7 +36,7 @@ router.put('/update', function(req, res){//is updating
 		res.json({retVal:false});
 		return;
 	}
-	let obj = new Student(req.body.identifier,req.body.name);
+	let obj = new Student(req.body.identifier,req.body.name,req.body.age,req.body.grade);
 	res.json({retVal:db.putStudent(obj)});
 });
 

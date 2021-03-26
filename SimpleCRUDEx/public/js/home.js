@@ -9,6 +9,8 @@ function readClicked(){
           alert("bad read");
         else if (data.retVal) {
           $("#name").val(data.retVal.name);
+          $("#age").val(data.retVal.age);
+          $("#grade").val(data.retVal.grade);
           alert("good read");
         } else
           alert("bad read");
@@ -21,7 +23,7 @@ function createClicked(){
     $.ajax({
       url: "/create",
       type: "POST",
-      data: {identifier:$("#identifier").val(),name:$("#name").val()},
+      data: {identifier:$("#identifier").val(),name:$("#name").val(),age:$("#age").val(),grade:$("#grade").val()},
       success: function(data){
         if (!data)
           alert("bad create");
@@ -38,7 +40,7 @@ function updateClicked(){//no $.put so this is why we do this for update
     $.ajax({
       url: "/update",
       type: "PUT",
-      data: {identifier:$("#identifier").val(),name:$("#name").val()},
+      data: {identifier:$("#identifier").val(),name:$("#name").val(),age:$("#age").val(),grade:$("#grade").val()},
       success: function(data){
         if (!data)
           alert("bad update");
