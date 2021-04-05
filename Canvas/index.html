@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JavaScript Canvas</title>
+
+
+<script type="text/javascript">
+
+
+window.addEventListener('load', eventWindowLoaded, false);
+
+function eventWindowLoaded() {
+   canvasApp();
+}
+
+function Create2DArray(rows) {
+  var arr = [];
+
+  for (var i=0;i<rows;i++) {
+     arr[i] = [];
+  }
+
+  return arr;
+}
+
+
+function canvasApp(){
+
+
+   var theCanvas = document.getElementById("canvas");
+theCanvas.addEventListener("mousemove",onMouseMove,false);
+theCanvas.addEventListener("click",onMouseClick,false);
+
+
+
+   if (!theCanvas || !theCanvas.getContext) {
+      return;
+   }
+
+
+   var context = theCanvas.getContext("2d");
+
+   if (!context) {
+      return;
+   }
+
+   //canvasApp level variables
+   var keyPressList = [];
+   var windowWidth = 400;
+   var windowHeight = 400;
+   var mouseX = 0;
+   var mouseY = 0;
+
+
+
+   reset();
+
+   gameLoop();
+
+///////////////////////////////////////////////////////
+   function gameLoop()
+   {
+        var FRAME_RATE = 10;
+        var intervalTime = 1000/FRAME_RATE;
+
+        input();
+        paint();
+        animate();
+        window.setTimeout(gameLoop, intervalTime);
+   }
+
+   document.onkeydown = function(e){
+      e = e?e:window.event;
+      keyPressList[e.keyCode] = true;
+   }
+
+   document.onkeyup = function(e){
+      e = e?e:window.event;
+      keyPressList[e.keyCode] = false;
+   };
+
+///////////////////////////////////////////////////////
+   function onMouseMove(e)
+   {
+
+   }
+   function onMouseClick(e)
+   {
+
+   }
+   function input()
+   {
+// Tab:9 Enter:13 Space:32 0:48 A:65 a:97 Delete:127
+       if (keyPressList[27]==true){
+       //Escape
+           reset();
+       }
+
+       if (keyPressList[37]==true) {
+       //Left arrow
+       }
+
+       if (keyPressList[38]==true) {
+       //Up arrow
+       }
+
+       if (keyPressList[39]==true) {
+       //Right arrow
+       }
+       if (keyPressList[40]==true) {
+       //Down arrow
+       }
+
+   }
+
+   function paint()
+   {
+   // draw background
+    context.fillStyle = '#ffffff';
+    context.fillRect(0, 0, getWidth2(), getHeight2());
+    context.strokeStyle = '#000000';
+    context.strokeRect(0, 0, getWidth2(), getHeight2());
+
+    {
+      context.fillStyle = "rgb(255,0,0)";
+      context.beginPath();
+      context.fillRect(getX(0)+getWidth2()/4,
+      getY(0)+getHeight2()/4,
+      getWidth2()/2,
+      getHeight2()/2);
+      context.closePath();
+    }
+    {
+      context.fillStyle = '#000000';
+      context.font = '30px sans-serif';
+      context.textBaseline = 'top';
+      context.fillText  ("Some Text", 50, 50);
+    }
+
+    drawCircle(300,100,0,8,8);
+
+    context.restore();
+
+   }
+
+   function drawCircle(xpos,ypos,rot,xscale,yscale)
+   {
+        context.save(); //save current state in stack
+        context.setTransform(1,0,0,1,0,0);
+
+        context.translate(xpos,ypos);
+        context.rotate(rot);
+        context.scale(xscale,yscale);
+        context.fillStyle = "rgb(0,0,0)";
+
+         context.beginPath();
+         context.arc(0,0,4,0,Math.PI*2,true);
+         context.closePath();
+         context.fill();
+
+
+        context.restore(); //pop old state on to screen
+   }
+
+
+
+   function reset()
+   {
+
+   }
+   function animate()
+   {
+
+   }
+////////////////////////////////////////////////////////
+   function getX(x)
+   {
+     return(x);
+   }
+   function getY(y)
+   {
+     return(y);
+   }
+   function getYNormal(y)
+   {
+     return(windowHeight-y);
+   }
+   function getWidth2()
+   {
+     return(windowWidth);
+   }
+   function getHeight2()
+   {
+     return(windowHeight);
+   }
+
+
+}
+
+</script>
+</head>
+
+
+<body>
+
+<canvas id="canvas" width="400" height="500"  style="position:absolute;top: 50px; left: 50px;">
+ Your browser does not support HTML5 Canvas.
+</canvas>
+
+</body>
+</html>
