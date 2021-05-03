@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    </head>
+
+    <body>
+        <div>
+          <label>Name</label>
+          <input id="name" name="a" type="text"/><br>
+          <label>Comment</label>
+          <input id="comment" name="b" type="text"/><br>
+        </div>
+
+        <ul id='messages'></ul>
+
+        <script>
+
+            let messageNum = 0;
+
+            polling();
+
+            function polling() {
+                $.ajax({
+                  url: "/message",
+                  type: "GET",
+                  data: null,
+                  success: function(data){
+                    if (data) {
+                      if (data.messageNum != messageNum) {
+                        messageNum = data.messageNum;
+                        $("#messages").append('<li>' + data.message + '</li>');
+                      }
+                    }
+                  } ,
+                  dataType: "json"
+                });
+
+                let numMilliSeconds = 1000;   // 1000 milliseconds = 1 second
+                setTimeout(polling, numMilliSeconds);
+            }
+
+
+            function Clicked(){
+                console.log("Clicked")
+                let comment = $("#comment").val();
+                $("#comment").val("");
+
+                $.ajax({
+                  url: "/comment",
+                  type: "POST",
+                  data: {name:$("#name").val(),comment:comment},
+                  success: function(data){
+                  } ,
+                  dataType: "json"
+                });
+              return false;
+            }
+
+
+
+            $(document).ready(function(){
+              $("#name").keydown( function( event ) {
+                  if ( event.which === 13 ) {
+                    Clicked();
+                    event.preventDefault();
+                    return false;
+                  }
+              });
+              $("#comment").keydown( function( event ) {
+                  if ( event.which === 13 ) {
+                    Clicked();
+                    event.preventDefault();
+                    return false;
+                  }
+              });
+
+            });
+
+        </script>
+
+    </body>
+</html>
