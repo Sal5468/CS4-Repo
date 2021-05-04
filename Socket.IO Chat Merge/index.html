@@ -23,7 +23,7 @@
 
 //Get message from server.
           socket.on('update', (data) => {
-                $("#messages").append('<li>'+ data.name + ":" + data.text + '</li>');
+                $("#messages").append('<li>'+ data.name + ": " + data.text + '</li>');
           });
 
           function doit() {
