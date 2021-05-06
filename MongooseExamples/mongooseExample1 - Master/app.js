@@ -6,8 +6,6 @@ mongoose.connect("mongodb://localhost/school");   //connects java script file to
 
 var obj = {id: 10,name: "Jojo",gradeLevel: 11,sport: false};
 
-var jojo = Student.create(obj,function(error,info){
+var jojo = Student.create(obj,function(error,info){//funtion not called untill this is called
 	console.log("Student.create function");
 });
-
-
