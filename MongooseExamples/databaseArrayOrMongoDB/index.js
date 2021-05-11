@@ -11,7 +11,6 @@ var routes = require("./routes");
 let app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use('/', express.static('./'));
 app.use('/js', express.static('./public/js'));
 app.use(routes);
 
