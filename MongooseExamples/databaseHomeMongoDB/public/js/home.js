@@ -21,7 +21,7 @@ function createClicked(){
     $.ajax({
       url: "/create",
       type: "POST",
-      data: {identifier:$("#identifier").val(),name:$("#name").val()},
+      data: {identifier:$("#identifier").val(),name:$("#name").val()},//change what data is sent
       success: function(data){
         if (!data)
           alert("bad create");
@@ -38,7 +38,7 @@ function updateClicked(){
     $.ajax({
       url: "/update",
       type: "PUT",
-      data: {identifier:$("#identifier").val(),name:$("#name").val()},
+      data: {identifier:$("#identifier").val(),name:$("#name").val()},//same thing as in create
       success: function(data){
         if (!data)
           alert("bad update");
@@ -53,7 +53,7 @@ function updateClicked(){
 }
 function deleteClicked(){
     $.ajax({
-      url: "/delete/" + Number($("#identifier").val()),
+      url: "/delete/" + Number($("#identifier").val()),//change to id
       type: "DELETE",
       success: function(data) {
         if (!data)
@@ -67,9 +67,13 @@ function deleteClicked(){
     });
     return false;
 }
+
+//add a clear function
+
 $(document).ready(function(){
   $("#readButton").click(readClicked);
   $("#createButton").click(createClicked);
   $("#updateButton").click(updateClicked);
   $("#deleteButton").click(deleteClicked);
+  //claer function
 });
