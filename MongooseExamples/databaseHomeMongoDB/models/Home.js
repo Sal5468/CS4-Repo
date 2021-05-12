@@ -2,7 +2,7 @@
 
 var mongoose = require("mongoose");
 
-var Home = mongoose.model("Property",{
+var Home = mongoose.model("Home",{
 	id: {
 		required: true,
 		unique: true,

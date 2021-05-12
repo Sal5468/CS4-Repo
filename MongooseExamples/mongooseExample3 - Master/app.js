@@ -15,8 +15,7 @@ var jojo = Student.create(obj,function(error,info){
 			console.log(student);
 		console.log("we are really done this 3rd time");
 		mongoose.connection.close();
-	});	
+	});
 	console.log("we are done a 2nd time, but not really");
 });
 console.log("we are done a 1st time, but not really");
-

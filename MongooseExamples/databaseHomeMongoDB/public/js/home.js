@@ -7,8 +7,10 @@ function readClicked(){
       success: function(data){
         if (!data)
           alert("bad read");
-        else if (data.retVal) {//change when determined return names
-          $("#name").val(data.retVal.name);
+        else if (data.retVal) {
+          $("#style").val(data.retVal.style)
+          $("#cost").val(data.retVal.cost)
+          $('#view').prop('checked',data.retVal.view)
           alert("good read");
         } else
           alert("bad read");
@@ -21,7 +23,7 @@ function createClicked(){
     $.ajax({
       url: "/create",
       type: "POST",
-      data: {id:$("#id").val(),style:$("#style").val(),cost:$("#cost").val(),view:$('#baseball').is(':checked')},//change what data is sent
+      data: {id:$("#id").val(),style:$("#style").val(),cost:$("#cost").val(),view:$('#view').is(':checked')},
       success: function(data){
         if (!data)
           alert("bad create");
@@ -38,7 +40,7 @@ function updateClicked(){
     $.ajax({
       url: "/update",
       type: "PUT",
-      data: {id:$("#id").val(),style:$("#style").val(),cost:$("#cost").val(),view:$('#baseball').is(':checked')},//same thing as in create
+      data: {id:$("#id").val(),style:$("#style").val(),cost:$("#cost").val(),view:$('#view').is(':checked')},//same thing as in create
       success: function(data){
         if (!data)
           alert("bad update");

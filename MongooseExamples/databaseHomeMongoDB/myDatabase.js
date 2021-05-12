@@ -3,7 +3,7 @@
 var express = require("express");
 var mongoose = require("mongoose");
 var HomeModel = require("./models/Home");
-const Home = require('./Home');
+const Home = require('./HomeClass');
 
 let myDatabase = function() {
 }
@@ -21,8 +21,7 @@ myDatabase.prototype.postHome = function(home,res) {
 }
 
 myDatabase.prototype.getHome = function(ident,res) {
-  console.log(ident)
-  HomeModel.find({ident:ident},function(error,info) {
+  HomeModel.find({id:ident},function(error,info) {
       if (error) {
           return res.json({retVal:null});
       }
@@ -31,7 +30,7 @@ myDatabase.prototype.getHome = function(ident,res) {
       }
 
       if (info.length == 1)
-        return res.json({ retVal: new Home(ident,info[0].name) });
+        return res.json({ retVal: new Home(ident,info[0].style,info[0].cost,info[0].view) });//NEEDS WORK(Maybe)
       else
           return res.json({retVal:null});
    });
@@ -53,7 +52,7 @@ myDatabase.prototype.putHome = function(home,res) {
 }
 
 myDatabase.prototype.deleteHome = function(ident,res) {
-    HomeModel.remove({ident:ident},function(error,removed) {
+    HomeModel.remove({id:ident},function(error,removed) {
         if (error) {
             return res.json({retVal:false});
         }

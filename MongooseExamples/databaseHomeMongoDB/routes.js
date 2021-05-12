@@ -3,7 +3,6 @@
 let path = require("path");
 let express = require("express");
 var mongoose = require("mongoose");   //new
-
 let router = express.Router();
 
 router.get("/",function(req,res){

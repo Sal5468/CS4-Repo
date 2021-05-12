@@ -30,7 +30,7 @@ myDatabase.prototype.getStudent = function(ident,res) {
           return res.json({retVal:null});
       }
 
-      if (info.length == 1)	
+      if (info.length == 1)
         return res.json({ retVal: new Student(ident,info[0].name) });
       else
           return res.json({retVal:null});
@@ -40,7 +40,7 @@ myDatabase.prototype.getStudent = function(ident,res) {
 
 
 myDatabase.prototype.putStudent = function(student,res) {
-  let obj = {ident:student.ident,name:student.name};  
+  let obj = {ident:student.ident,name:student.name};
   StudentModel.findOneAndUpdate({ident:student.ident},{name:student.name},function(error,oldStudent) {
     if (error) {
       return res.json({retVal:false});
@@ -56,7 +56,7 @@ myDatabase.prototype.deleteStudent = function(ident,res) {
     StudentModel.remove({ident:ident},function(error,removed) {
         if (error) {
             return res.json({retVal:false});
-        }        
+        }
         if (removed.result.n == 0)
           return res.json({retVal:false});
         return res.json({retVal:true});
