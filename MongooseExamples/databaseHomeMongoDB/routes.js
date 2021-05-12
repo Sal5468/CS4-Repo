@@ -16,27 +16,27 @@ let db = new myDatabase();
 const Home = require('./HomeClass');
 
 router.post('/create', function(req, res){
-	if (req.body.name == "") {
+	if (req.body.cost == 0) {
 		res.json({retVal:false});
 		return;
 	}
-	let obj = new Home(req.body.identifier,req.body.name);
+	let obj = new Home(req.body.id,req.body.style,req.body.cost,req.body.view);
 	return(db.postHome(obj,res));
 });
 
 
 router.get('/read', function(req, res){
-	return(db.getHome(req.query.identifier,res));
+	return(db.getHome(req.query.id,res));
 });
 
 
 
 router.put('/update', function(req, res){
-	if (req.body.name == "") {
+	if (req.body.cost == 0) {
 		res.json({retVal:false});
 		return;
 	}
-	let obj = new Home(req.body.identifier,req.body.name);
+	let obj = new Home(req.body.id,req.body.style,req.body.cost,req.body.view);
 	return(db.putHome(obj,res));
 });
 

@@ -3,7 +3,7 @@ function readClicked(){
     $.ajax({
       url: "/read",
       type: "GET",
-      data: {identifier:$("#id").val()},
+      data: {id:$("#id").val()},
       success: function(data){
         if (!data)
           alert("bad read");
@@ -21,7 +21,7 @@ function createClicked(){
     $.ajax({
       url: "/create",
       type: "POST",
-      data: {identifier:$("#identifier").val(),name:$("#name").val()},//change what data is sent
+      data: {id:$("#id").val(),style:$("#style").val(),cost:$("#cost").val(),view:$('#baseball').is(':checked')},//change what data is sent
       success: function(data){
         if (!data)
           alert("bad create");
@@ -38,7 +38,7 @@ function updateClicked(){
     $.ajax({
       url: "/update",
       type: "PUT",
-      data: {identifier:$("#identifier").val(),name:$("#name").val()},//same thing as in create
+      data: {id:$("#id").val(),style:$("#style").val(),cost:$("#cost").val(),view:$('#baseball').is(':checked')},//same thing as in create
       success: function(data){
         if (!data)
           alert("bad update");
@@ -53,7 +53,7 @@ function updateClicked(){
 }
 function deleteClicked(){
     $.ajax({
-      url: "/delete/" + Number($("#identifier").val()),//change to id
+      url: "/delete/" + Number($("#id").val()),//change to id
       type: "DELETE",
       success: function(data) {
         if (!data)
@@ -67,13 +67,16 @@ function deleteClicked(){
     });
     return false;
 }
-
-//add a clear function
+function clearClicked(){
+  $("#style").val("spanish")
+  $("#cost").val(0)
+  $('#view').prop('checked',false)
+}
 
 $(document).ready(function(){
   $("#readButton").click(readClicked);
   $("#createButton").click(createClicked);
   $("#updateButton").click(updateClicked);
   $("#deleteButton").click(deleteClicked);
-  //claer function
+  $("#clearButton").click(clearClicked);
 });

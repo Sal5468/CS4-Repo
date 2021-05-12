@@ -11,7 +11,7 @@ let myDatabase = function() {
 
 
 myDatabase.prototype.postHome = function(home,res) {
-  let obj = {ident:home.ident,name:home.name};
+  let obj = {id:home.id,style:home.style,cost:home.cost,view:home.view};
   HomeModel.create(obj,function(error,info) {
       if (error) {
           return res.json({retVal:false});
@@ -21,7 +21,7 @@ myDatabase.prototype.postHome = function(home,res) {
 }
 
 myDatabase.prototype.getHome = function(ident,res) {
-
+  console.log(ident)
   HomeModel.find({ident:ident},function(error,info) {
       if (error) {
           return res.json({retVal:null});
@@ -40,8 +40,8 @@ myDatabase.prototype.getHome = function(ident,res) {
 
 
 myDatabase.prototype.putHome = function(home,res) {
-  let obj = {ident:home.ident,name:home.name};
-  HomeModel.findOneAndUpdate({ident:home.ident},{name:home.name},function(error,oldHome) {
+  let obj = {id:home.id,style:home.style,cost:home.cost,view:home.view};
+  HomeModel.findOneAndUpdate({id:home.id},{style:home.style,cost:home.cost,view:home.view},function(error,oldHome) {
     if (error) {
       return res.json({retVal:false});
     }
