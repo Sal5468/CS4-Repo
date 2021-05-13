@@ -4,7 +4,7 @@ let express = require('express');
 var bodyParser = require('body-parser');
 
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/school");
+mongoose.connect("mongodb://localhost/properties");
 
 var routes = require("./routes");
 
