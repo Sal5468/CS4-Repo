@@ -47,7 +47,7 @@ console.log("get failsignup");
 });
 
 router.get("/successlogin", function(req, res) {
-console.log("get successsignup");
+console.log("get successlogin");
 	res.json({redirect:"/session"});	
 });
 router.get("/faillogin", function(req, res) {
@@ -62,13 +62,6 @@ router.get("/", function(req, res, next) {
 console.log("get root");
 	let thePath = path.resolve(__dirname,"public/views/login.html");		
 	res.sendFile(thePath);	
-
- // User.find()
- // .sort({ createdAt: "descending" })
- // .exec(function(err, users) {
- //   if (err) { return next(err); }
- //   res.render("index", { users: users });
- // });
 });
 
 
@@ -92,19 +85,25 @@ console.log("get login");
 router.get("/session", function(req, res) {
   console.log("get session");
   if (req.isAuthenticated()) {
+    console.log("sendFile session.html")
 	let thePath = path.resolve(__dirname,"public/views/session.html");		
 	res.sendFile(thePath);	
   } else {
+    console.log("sendFile login.html")
   	let thePath = path.resolve(__dirname,"public/views/login.html");		
 	res.sendFile(thePath);	
   }
 });
 
 router.get("/userInfo",function(req,res){
+  console.log("get userInfo");
      if (req.isAuthenticated()) {
+  console.log("req isAuthenticated");
+  console.log("valueJY = " + req.user.valueJY);    /* user defined value */
 		res.json({username:req.user.username});
 	}
 	else {
+  console.log("req is not Authenticated");
 		res.json(null);
 	}
 });
@@ -113,10 +112,13 @@ router.get("/userInfo",function(req,res){
 
 
 router.get("/logout", function(req, res) {
+  console.log("get logout")
   if (req.isAuthenticated()) {
+  console.log("req isAuthenticated");
     req.logout();
     res.redirect("/successroot");
   } else {
+  console.log("req is not Authenticated");
     res.redirect("/failroot");
   }
 });
@@ -128,22 +130,27 @@ console.log("post signup");
   var password = req.body.password;
 
   User.findOne({ username: username }, function(err, user) {
-
-    if (err) { return next(err); }
+console.log("User findOne function callback")
+    if (err) 
+    {
+      console.log("err"); 
+      return next(err); 
+    }
     if (user) {
+      console.log("user")
       req.flash("error", "User already exists");
       return res.redirect("/failsignup");
     }
-
+console.log("new User")
     var newUser = new User({
       username: username,
       password: password
     });
-    newUser.save(next);    //this line has to be called.
+    newUser.save(next);    //goes to user.js (userSchema.pre(save))
   });
 
 
-}, passport.authenticate("login", {
+}, passport.authenticate("login", {       //goes to setuppassport.js  (passport.use("login"))
   successRedirect: "/successsignup",
   failureRedirect: "/failsignup",
   failureFlash: true

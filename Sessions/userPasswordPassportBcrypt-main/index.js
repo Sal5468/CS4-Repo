@@ -11,7 +11,9 @@ var setUpPassport = require("./setuppassport");
 var routes = require("./routes");
 
 var app = express();
-mongoose.connect("mongodb://localhost:27017/userdb");   //27017 seems to be the port number used by mongod
+
+//27017 seems to be the port number used by mongod
+mongoose.connect("mongodb://localhost:27017/userdb");   
 setUpPassport();
 
 app.set("port", process.env.PORT || 3000);

@@ -3,9 +3,10 @@
 
  		
   		function userClicked(){
-
+console.log("login userClicked")
           $.post("/login",{username:$("#username").val(), password:$("#psw").val()},function(data)
 {
+  console.log("login callback function")
 		window.location = data.redirect;
 });
 
