@@ -21,7 +21,12 @@ console.log("zident " + zident);
               if (!data.retVal)
                 alert("bad read");
               else {
-               
+
+            if (data.retVal.driverslicence)
+              $("#diriversL").prop("checked",true);
+            else
+              $("#diriversL").prop("checked",false);
+
             if (data.retVal.volleyball)
               $("#volleyball").prop("checked",true);
             else
@@ -36,13 +41,13 @@ console.log("zident " + zident);
               $("#soccer").prop("checked",true);
             else
               $("#soccer").prop("checked",false);
- 
+
             $("#grade").val(data.retVal.grade);
 
-      
+
                 alert("good read");
               }
-            }  
+            }
 
           );
 
@@ -50,7 +55,7 @@ console.log("zident " + zident);
 
   		  return false;
   		}
-      
+
 
       function updateClicked(){
 
@@ -66,11 +71,11 @@ console.log("zident " + zident);
 
           $.ajax({
             url: "/updateAdmin",
-            type: "PUT",            
+            type: "PUT",
 
             data: {ident:zident,name:$("#names").val(),
             grade:$("#grade").val(),volleyball:$("#volleyball").prop("checked"),basketball:$("#basketball").prop("checked"),
-            soccer:$("#soccer").prop("checked")
+            soccer:$("#soccer").prop("checked"),driversL:$("#diriversL").prop("checked")
 
             },
             success: function(data){
@@ -78,22 +83,22 @@ console.log("zident " + zident);
                 alert("bad update");
               else
                 alert("good update");
-            } ,     
+            } ,
             dataType: "json"
-          });     
+          });
         return false;
       }
 
- 		
+
 function logoutClicked(){
 	$.get("/logout",function(data){
 		window.location = data.redirect;
 	});
-	return false;             
+	return false;
 }
 
 
-$(document).ready(function(){ 
+$(document).ready(function(){
   console.log("adminsession ready");
 //  $("#createButton").click(createClicked);
   $("#readButton").click(readClicked);
@@ -131,13 +136,10 @@ $(document).ready(function(){
 //          return false;
 //        }
 
-  
+
     return false;
   })
 
 
 
-});  		
-    
-
-
+});

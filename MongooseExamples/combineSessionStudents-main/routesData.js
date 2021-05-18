@@ -52,7 +52,7 @@ router.get('/readAdmin', function(req, res){
 		if (req.user.username == "admin")
 		{
 
-//added below for mongo	
+//added below for mongo
 
 console.log("readAdmin " + req.query.ident);
 		return(db.getStudent(req.query.ident,res));
@@ -85,10 +85,10 @@ router.post('/create', function(req, res){
 		console.log(req.body.grade);
 		console.log(req.body.volleyball);
 
-//added below for mongo		
+//added below for mongo
 	let obj = new Student(req.user.ident,req.user.username,req.body.grade,req.body.volleyball,
 		req.body.basketball,req.body.soccer);
-		return(db.postStudent(obj,res));	
+		return(db.postStudent(obj,res));
 
 	}
 	else
@@ -111,8 +111,8 @@ console.log(req.body.grade);
 			res.json(null);
 			return;
 		}
-//added below for mongo		
-	let obj = new Student(req.body.ident,req.body.name,req.body.grade,req.body.volleyball,req.body.basketball,req.body.soccer);
+//added below for mongo
+	let obj = new Student(req.body.ident,req.body.name,req.body.grade,req.body.driversL,req.body.volleyball,req.body.basketball,req.body.soccer);
 		return(db.putStudent(obj,res));
 	}
 	else
@@ -129,8 +129,9 @@ router.put('/update', function(req, res){
 			res.json(null);
 			return;
 		}
-//added below for mongo		
-	let obj = new Student(req.user.ident,req.user.username,req.body.grade,req.body.volleyball,req.body.basketball,req.body.soccer);
+//added below for mongo
+//console.log(req.body.driversL)
+	let obj = new Student(req.user.ident,req.user.username,req.body.grade,req.body.driversL,req.body.volleyball,req.body.basketball,req.body.soccer);
 		return(db.putStudent(obj,res));
 
 	}
@@ -140,7 +141,7 @@ router.put('/update', function(req, res){
 
 
 //router.delete('/delete/:identifier', function(req, res){
-////added below for mongo	
+////added below for mongo
 //	return( db.deleteStudent(req.params.identifier,res));
 ////added above for mongo
 //});
@@ -148,4 +149,3 @@ router.put('/update', function(req, res){
 
 
 module.exports = router;
-

@@ -31,9 +31,9 @@ myDatabase.prototype.getStudent = function(ident,res) {
           return res.json({retVal:null});
       }
 
-      if (info.length == 1)    
+      if (info.length == 1)
       {
-        return res.json({ retVal: new Student(ident,info[0].name,info[0].grade,info[0].volleyball,info[0].basketball,info[0].soccer       ) });
+        return res.json({ retVal: new Student(ident,info[0].name,info[0].grade,info[0].driverslicence,info[0].volleyball,info[0].basketball,info[0].soccer       ) });
       }
       else
           return res.json({retVal:null});
@@ -45,9 +45,9 @@ myDatabase.prototype.getStudent = function(ident,res) {
 
 myDatabase.prototype.putStudent = function(student,res) {
 //  let obj = {ident:student.ident,name:student.name,grade:student.grade,volleyball:student.volleyball
-//,basketball:student.basketball,soccer:student.soccer};  
+//,basketball:student.basketball,soccer:student.soccer};
 
-  Info.findOneAndUpdate({ident:student.ident},{name:student.name,grade:student.grade,volleyball:student.volleyball
+  Info.findOneAndUpdate({ident:student.ident},{name:student.name,grade:student.grade,driverslicence:student.driverslicence,volleyball:student.volleyball
 ,basketball:student.basketball,soccer:student.soccer},function(error,oldStudent) {
     if (error) {
       return res.json({retVal:false});
@@ -65,7 +65,7 @@ myDatabase.prototype.deleteStudent = function(ident,res) {
     Info.remove({ident:ident},function(error,removed) {
         if (error) {
             return res.json({retVal:false});
-        }        
+        }
         if (removed.result.n == 0)
           return res.json({retVal:false});
         return res.json({retVal:true});

@@ -11,6 +11,7 @@ var infoSchema = mongoose.Schema({
 	},
 	name: String,
 	grade: Number,
+	driverslicence: Boolean,
 	volleyball: Boolean,
 	basketball: Boolean,
 	soccer: Boolean
@@ -19,6 +20,3 @@ var infoSchema = mongoose.Schema({
 var Info = mongoose.model("Info", infoSchema);
 
 module.exports = Info;
-
-
-
