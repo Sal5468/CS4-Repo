@@ -99,11 +99,16 @@ function logoutClicked(){
 
 
 $(document).ready(function(){
+
   console.log("adminsession ready");
 //  $("#createButton").click(createClicked);
   $("#readButton").click(readClicked);
   $("#updateButton").click(updateClicked);
 //  $("#deleteButton").click(deleteClicked);
+
+  $("#names").change(function(){
+    readClicked()
+  })
 
 
 	$.get("/adminInfo",function(data){
@@ -119,27 +124,11 @@ $(document).ready(function(){
         }
 
 
-
+        readClicked()
     }
 	});
 
 	$("#logout").click(logoutClicked);
-
-  $("form").submit(function(event)
-  {
-//        if ($("#identifier").val() == "") {
-//          alert("NO ID");
-//          return false;
-//        }
-//        if ($("#name").val() == "") {
-//          alert("NO NAME");
-//          return false;
-//        }
-
-
-    return false;
-  })
-
 
 
 });
