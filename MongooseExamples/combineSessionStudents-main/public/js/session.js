@@ -75,6 +75,22 @@ function logoutClicked(){
 	return false;
 }
 
+function passwordUpdate(){
+
+    if ($("#psw").val() == "")
+    {
+      alert("bad password update");
+      return false;
+    }
+    $.post("/changepsw",{password:$("#psw").val()},function(data)
+    {
+      alert("good password update");
+      $("#psw").val("")
+      return false;
+    });
+    return false;
+}
+
 
 $(document).ready(function(){
   console.log("session ready");
@@ -83,15 +99,28 @@ $(document).ready(function(){
   $("#updateButton").click(updateClicked);
 //  $("#deleteButton").click(deleteClicked);
 
+  $("#psw").keydown( function( event ) {
+      if ( event.which === 13 ) {
+        passwordUpdate();
+        event.preventDefault();
+        return false;
+      }
+  });
 
 	$.get("/userInfo",function(data){
       console.log("in userInfo");
 		if (data.retVal.name) {
       console.log(data.retVal.grade);
+      console.log(data.retVal.driverslicence);
       console.log(data.retVal.volleyball);
       console.log(data.retVal.basketball);
       console.log(data.retVal.soccer);
 			$("#session").html("Session " + data.retVal.name + " " + data.retVal.ident);
+
+      if (data.retVal.driverslicence)
+        $("#diriversL").prop("checked",true);
+      else
+        $("#diriversL").prop("checked",false);
 
       if (data.retVal.volleyball)
         $("#volleyball").prop("checked",true);

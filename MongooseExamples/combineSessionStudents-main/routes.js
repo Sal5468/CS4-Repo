@@ -1,3 +1,6 @@
+var bcrypt = require("bcrypt-nodejs");
+var SALT_FACTOR = 10;
+
 var path = require("path");
 var express = require("express");
 var passport = require("passport");
@@ -45,7 +48,7 @@ function initIdent(){
             ident = user[i].ident;
         }
       }
-    });    
+    });
 //    ident = 3;   //this was temp to check if User.find above is an issue.
   }
 }
@@ -53,32 +56,32 @@ function initIdent(){
 
 router.get("/successroot", function(req, res) {
 console.log("get successroot");
-	res.json({redirect:"/"});	
+	res.json({redirect:"/"});
 });
 
 router.get("/failroot", function(req, res) {
 console.log("get failroot");
-	res.json({redirect:"/login"});	
+	res.json({redirect:"/login"});
 });
 
 router.get("/successsignup", function(req, res) {
 console.log("get successsignup");
-      res.json({redirect:"/session"});    
+      res.json({redirect:"/session"});
 });
 
 router.get("/failsignup", function(req, res) {
 console.log("get failsignup");
-	res.json({redirect:"/login"});	
+	res.json({redirect:"/login"});
 });
 
 router.get("/successlogin", function(req, res) {
 console.log("get successlogin");
-      res.json({redirect:"/session"});    
+      res.json({redirect:"/session"});
 });
 
 router.get("/faillogin", function(req, res) {
 console.log("get faillogin");
-	res.json({redirect:"/login"});	
+	res.json({redirect:"/login"});
 
 });
 
@@ -87,8 +90,8 @@ console.log("get faillogin");
 router.get("/", function(req, res, next) {
 console.log("get root");
 
-	let thePath = path.resolve(__dirname,"public/views/login.html");		
-	res.sendFile(thePath);	
+	let thePath = path.resolve(__dirname,"public/views/login.html");
+	res.sendFile(thePath);
 
  // User.find()
  // .sort({ createdAt: "descending" })
@@ -103,19 +106,43 @@ router.get("/signup", function(req, res) {
 console.log("get signup");
   initIdent();
 
-	let thePath = path.resolve(__dirname,"public/views/signup.html");		
-	res.sendFile(thePath);	
+	let thePath = path.resolve(__dirname,"public/views/signup.html");
+	res.sendFile(thePath);
 
 });
 
 router.get("/login", function(req, res) {
 console.log("get login");
 
-	let thePath = path.resolve(__dirname,"public/views/login.html");		
-	res.sendFile(thePath);	
+	let thePath = path.resolve(__dirname,"public/views/login.html");
+	res.sendFile(thePath);
 
 });
 
+var noop = function() {};
+
+router.post('/changepsw', function(req, res){
+  console.log("route indendt"+req.user.ident);
+    if (req.isAuthenticated()) {
+        bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
+            if (err) { res.json(null); }
+            bcrypt.hash(req.body.password, salt, noop, function(err, hashedPassword) {
+                if (err) {  res.json(null); }
+                User.findOneAndUpdate({ident:req.user.ident},{password:hashedPassword},function(error,info) {
+                    if (error) {
+                        res.json(null);
+                    }
+                    else if (info == null) {
+                        res.json(null);
+                    }
+                    res.json({});
+                });
+            });
+        });
+    }
+    else
+        res.json(null);
+});
 
 router.get("/session", function(req, res) {
   console.log("get session");
@@ -123,17 +150,17 @@ router.get("/session", function(req, res) {
 
     if (req.user.username == "admin")
     {
-       let thePath = path.resolve(__dirname,"public/views/adminsession.html");   
-       res.sendFile(thePath); 
+       let thePath = path.resolve(__dirname,"public/views/adminsession.html");
+       res.sendFile(thePath);
     }
     else
     {
-	     let thePath = path.resolve(__dirname,"public/views/session.html");		
-	     res.sendFile(thePath);	
+	     let thePath = path.resolve(__dirname,"public/views/session.html");
+	     res.sendFile(thePath);
      }
   } else {
-  	let thePath = path.resolve(__dirname,"public/views/login.html");		
-	res.sendFile(thePath);	
+  	let thePath = path.resolve(__dirname,"public/views/login.html");
+	res.sendFile(thePath);
   }
 });
 
@@ -151,7 +178,7 @@ router.get("/adminInfo",function(req,res){
             initAdmin(req,res);
         }
         else
-          res.json(null);          
+          res.json(null);
 
   }
   else {
