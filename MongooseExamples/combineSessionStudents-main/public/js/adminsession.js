@@ -59,6 +59,8 @@ console.log("zident " + zident);
 
       function updateClicked(){
 
+        if ($("#names").val() == null)
+          return false;
 
 console.log($("#names").val());
 console.log($("select[name='names'] option:selected").index());
@@ -89,6 +91,22 @@ console.log("zident " + zident);
         return false;
       }
 
+    /*  function deleteClicked(){
+          $.ajax({
+            url: "/delete/" + String($("#names").val()),
+            type: "DELETE",
+            success: function(data) {
+              if (!data)
+                alert("bad delete");
+              else if (data.retVal)
+                alert("good delete");
+              else
+                alert("bad delete");
+            } ,
+            dataType: "json"
+          });
+          return false;
+      }*/
 
 function logoutClicked(){
 	$.get("/logout",function(data){
@@ -104,7 +122,7 @@ $(document).ready(function(){
 //  $("#createButton").click(createClicked);
   $("#readButton").click(readClicked);
   $("#updateButton").click(updateClicked);
-//  $("#deleteButton").click(deleteClicked);
+//  $("#updateButton").click(updateClicked);
 
   $("#names").change(function(){
     readClicked()

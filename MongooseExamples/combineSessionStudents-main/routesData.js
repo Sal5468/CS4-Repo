@@ -139,12 +139,12 @@ router.put('/update', function(req, res){
 		res.json(null);
 });
 
-
-//router.delete('/delete/:identifier', function(req, res){
+/*
+router.delete('/delete/:name', function(req, res){
 ////added below for mongo
-//	return( db.deleteStudent(req.params.identifier,res));
+	return( db.deleteStudent(req.params.identifier,res));
 ////added above for mongo
-//});
+});*/
 
 
 
