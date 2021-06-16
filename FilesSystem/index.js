@@ -61,7 +61,7 @@ function parseLine(line)//just pharsing it out to each word
     console.log("||" + line + "||" );
 }
 
-fs.writeFile('./public/empty.txt', 'Hello content! But I changed', function (err) {
+fs.writeFile('./public/empty.txt', 'Hello content! But I changed', function (err) {//wipes out full file but append adds it to the end
   if (err) throw err;
   console.log('Saved!');
 });
