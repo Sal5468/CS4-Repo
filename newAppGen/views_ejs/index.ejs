@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= stringVal %></title><!--is going to interpret as is -->
+  </head>
+
+  <body>
+    <p>stringVal is <%= stringVal %></p>
+    <p>stringVal is <%- stringVal %></p><!--interpret it with tags -->
+    <p>numVal is <%= numVal %></p>
+    <p>booleanVal is <%= booleanVal %></p>
+
+    <% let val = 3; %><!-- this allows you to just put java script in it. -->
+    <% if (booleanVal) { %>
+    <% val++; %>
+    <% numVal++; %>
+    <p>booleanVal is true</p>
+    <% } else { %><!--can even straddle items-->
+    <p>booleanVal is false</p>
+    <% } %>
+    <% console.log(val); %>
+    <p>val is <%= val %></p>
+    <p>numVal is <%= numVal %></p>
+
+
+  </body>
+</html>
